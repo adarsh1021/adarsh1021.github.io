@@ -1,53 +1,92 @@
+/* https://codepen.io/matchboxhero/pen/bomWGK?editors=1100 */
 .container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
-	background-color: #ededed;
+	display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+  
+  min-height: 100vh;
+  background-color: #ededed;
+
 }
 
 .loader {
-	max-width: 15rem;
-	width: 100%;
-	height: auto;
-	stroke-linecap: round;
+  max-width: 15rem;
+  width: 100%;
+  height: auto;
+  stroke-linecap: round;
 }
 
 circle {
-	fill: none;
-	stroke-width: 3.5;
-	animation-name: preloader;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-in-out;
-	transform-origin: 170px 170px;
-	will-change: transform;
+  fill: none;
+  stroke-width: 3.5;
+  -webkit-animation-name: preloader;
+          animation-name: preloader;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-transform-origin: 170px 170px;
+          transform-origin: 170px 170px;
+  will-change: transform;
+}
+circle:nth-of-type(1) {
+  stroke-dasharray: 550px;
+}
+circle:nth-of-type(2) {
+  stroke-dasharray: 500px;
+}
+circle:nth-of-type(3) {
+  stroke-dasharray: 450px;
+}
+circle:nth-of-type(4) {
+  stroke-dasharray: 300px;
+}
+circle:nth-of-type(1) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+circle:nth-of-type(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+circle:nth-of-type(3) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+circle:nth-of-type(4) {
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+}
 
-	&:nth-of-type(1) {
-		stroke-dasharray: 550px;
-	}
-
-	&:nth-of-type(2) {
-		stroke-dasharray: 500px;
-	}
-
-	&:nth-of-type(3) {
-		stroke-dasharray: 450px;
-	}
-
-	&:nth-of-type(4) {
-		stroke-dasharray: 300px;
-	}
-
-	@for $i from 1 through 4 {
-		&:nth-of-type(#{$i}) {
-			animation-delay: -#{$i * 0.15}s;
-		}
-	}
+@-webkit-keyframes preloader {
+  50% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 @keyframes preloader {
-	50% {
-		transform: rotate(360deg);
-	}
+  50% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .container {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .container {
+    display: block;
 }
